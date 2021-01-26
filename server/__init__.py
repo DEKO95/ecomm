@@ -10,3 +10,4 @@ app = Flask(__name__, root_path=os.getcwd())
 # migrate = Migrate(app, db)
 
 from server import routes
+from server import errors
