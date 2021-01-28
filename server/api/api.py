@@ -3,10 +3,10 @@ import io
 from flask import jsonify, send_file
 from requests_toolbelt import MultipartEncoder
 
-from server import app
+from server.api import bp
 from server.models import Item, ItemPicture
 
-@app.route('/api/item/<int:id>')
+@bp.route('/item/<int:id>')
 def item_endpoint(id):
 
     item = Item.query.filter_by(id=id).first()
@@ -18,7 +18,7 @@ def item_endpoint(id):
     return (m.to_string(), {'Content-Type': m.content_type})
 
 
-@app.route('/api/picture/<int:id>')
+@bp.route('/picture/<int:id>')
 def picture_endpoint(id):
 
     pic = ItemPicture.query.filter_by(id=id).first()

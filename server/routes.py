@@ -4,7 +4,6 @@ from flask import render_template, send_from_directory
 from server import app
 
 
-@deprecated(reason="Will be removed after switching to the correct SPA model")
 @app.route('/')
 def index():
     return render_template('index.html')

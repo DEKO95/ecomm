@@ -10,7 +10,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-# TODO: use a blueprint instead
+from server.api import bp as api_bp
+app.register_blueprint(api_bp, url_prefix='/api')
+
 from server import models
 from server import routes
-from server import api
