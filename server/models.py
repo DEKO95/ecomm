@@ -1,6 +1,8 @@
 import datetime
 import os
+
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask import url_for
 
 from server import db
 
@@ -26,6 +28,7 @@ class Item(db.Model):
     description = db.Column(db.Text)
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
     is_available = db.Column(db.Boolean, default=True)
+    # main_picture = db.Column(db.Integer, db.ForeignKey('item_picture.id'), nullable=True)
     pictures = db.relationship('ItemPicture', backref=db.backref('item', lazy='joined'), lazy='dynamic')
     
     def to_dict(self):
@@ -34,7 +37,11 @@ class Item(db.Model):
             "title": self.title,
             "price": self.price,
             "description": self.description,
-            "is_available": self.is_available
+            "is_available": self.is_available,
+            "category_id": self.category_id, # or send category title?
+            "pictures": [
+                url_for('api.picture_endpoint', id=pic.id) for pic in self.pictures.all()
+            ]
         }
 
 # should we make many-to-many instead?

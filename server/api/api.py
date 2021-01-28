@@ -10,12 +10,8 @@ from server.models import Item, ItemPicture
 def item_endpoint(id):
 
     item = Item.query.filter_by(id=id).first()
-    pic = item.pictures.first()
-    m = MultipartEncoder(fields={'markdown': str(item.to_dict()),
-                                 'files': (pic.filename, pic.file)
-                                 })
-
-    return (m.to_string(), {'Content-Type': m.content_type})
+    
+    return item.to_dict()
 
 
 @bp.route('/picture/<int:id>')
