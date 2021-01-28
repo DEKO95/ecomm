@@ -1,4 +1,6 @@
+Deprecated
 Flask
 flask_sqlalchemy
 flask_migrate
 gunicorn
+requests_toolbelt

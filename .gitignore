@@ -1,3 +1,5 @@
+migrations/
+
 .deta/
 .vscode/
 *.sqlite3
