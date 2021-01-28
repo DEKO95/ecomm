@@ -2,5 +2,6 @@ Deprecated
 Flask
 flask_sqlalchemy
 flask_migrate
+flask_httpauth
 gunicorn
 requests_toolbelt

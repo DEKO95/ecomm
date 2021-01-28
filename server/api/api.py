@@ -6,12 +6,19 @@ from requests_toolbelt import MultipartEncoder
 from server.api import bp
 from server.models import Item, ItemPicture
 
-@bp.route('/item/<int:id>')
+
+@bp.route('/items/<int:id>')
 def item_endpoint(id):
 
     item = Item.query.get_or_404(id)
     
     return item.to_dict()
+
+
+@bp.route('/items', methods=['POST'])
+# @
+def add_item():
+    pass
 
 
 @bp.route('/picture/<int:id>')

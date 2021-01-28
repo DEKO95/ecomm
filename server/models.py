@@ -6,20 +6,31 @@ from flask import url_for
 
 from server import db
 
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     email = db.Column(db.String(128), unique=True)
     hash_password = db.Column(db.String(256), nullable=False)
     orders = db.relationship('Order', backref=db.backref('user', lazy='joined'), lazy='dynamic')
     reviews = db.relationship('Review', backref=db.backref('user', lazy='joined'), lazy='dynamic')
+    moderator = db.relationship('Moderator', backref=db.backref('user', lazy='joined'), lazy='joined')
+    
+    def __init__(self, email, password):
+        self.email = email
+        self.set_password(password)
     
     def set_password(self, password):
         self.hash_password = generate_password_hash(password + os.environ['PASSWORD_SALT'])
 
     def check_password(self, password):
-        return check_password_hash(self.hash_password, password)
-
+        return check_password_hash(self.hash_password, password + os.environ['PASSWORD_SALT'])
     
+    
+class Moderator(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    is_admin = db.Column(db.Boolean, default=False)
+
 
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -31,7 +42,7 @@ class Item(db.Model):
     # main_picture = db.Column(db.Integer, db.ForeignKey('item_picture.id'), nullable=True)
     pictures = db.relationship('ItemPicture', backref=db.backref('item', lazy='joined'), lazy='dynamic')
     
-    def to_dict(self):
+    def to_dict(self): # TODO: what about flask_marshmallow?
         return {
             "id": self.id,
             "title": self.title,
