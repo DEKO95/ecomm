@@ -3,5 +3,6 @@ Flask
 flask_sqlalchemy
 flask_migrate
 flask_httpauth
+flask_restful
 gunicorn
 requests_toolbelt
