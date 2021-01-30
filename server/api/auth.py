@@ -14,13 +14,8 @@ def verify_password(email, password):
 @auth.get_user_roles
 def get_user_roles(user_id):
     m = Moderator.query.filter_by(user_id=user_id).first()
-    if not m: # TODO rewrite
+    if not m:  # TODO rewrite
         return 'user'
     if m.is_admin:
         return 'admin'
     return 'moderator'
-
-@bp.route('/')
-@auth.login_required(role=['admin'])
-def login():
-    return "Hello, {}!".format(auth.current_user())
