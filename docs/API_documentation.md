@@ -32,14 +32,14 @@ All the endpoints have a `/api` prefix
 * Returns 200 and json of selected item
   ```json
   {
-    "id": <int>,
-    "title": <string>,
-    "price": <float>,
-    "description": <string>,
-    "is_available": <bool>,
-    "category_id": <int>,
+    "id": /*int*/,
+    "title": /*string*/,
+    "price": /*float*/,
+    "description": /*string*/,
+    "is_available": /*bool*/,
+    "category_id": /*int*/,
     "pictures": [
-        links for the related pictures
+        /* links for the related pictures */
     ]
   }
   ```
@@ -75,18 +75,18 @@ All the endpoints have a `/api` prefix
   ```json
   {
       "items": [
-          items (see GET /items/<int:id>) 
+          /* items (see GET /items/<int:id>) */
       ],
       "_meta": {
-          "page": <int>,
-          "per_page": <int>,
-          "total_pages": <int>,
-          "total_items": <int>
+          "page": /*int*/,
+          "per_page": /*int*/,
+          "total_pages": /*int*/,
+          "total_items": /*int*/
       },
       "_links": {
-          "self": link for this page,
-          "next": link for the next page (or null),
-          "prev": link for the previous page (or null)
+          "self": /* link for this page */,
+          "next": /* link for the next page (or null) */,
+          "prev": /* link for the previous page (or null) */
       }
     }
   ```
