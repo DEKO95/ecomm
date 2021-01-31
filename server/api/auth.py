@@ -11,6 +11,7 @@ def verify_password(email, password):
     if user and user.check_password(password):
         return user.id
 
+
 @auth.get_user_roles
 def get_user_roles(user_id):
     m = Moderator.query.filter_by(user_id=user_id).first()

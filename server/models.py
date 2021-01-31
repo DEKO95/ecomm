@@ -56,6 +56,7 @@ class Item(PaginatedMixin, db.Model):
             ]
         }
 
+
 # should we make many-to-many instead?
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)

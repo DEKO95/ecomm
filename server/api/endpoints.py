@@ -12,10 +12,12 @@ from server.models import Item, ItemPicture
 
 IMAGE_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in IMAGE_EXTENSIONS
-           
+
+
 def load_item_images_from_multipart(id):
     for files in request.files.listvalues():
         for file in files:
@@ -26,7 +28,7 @@ def load_item_images_from_multipart(id):
                                     file=file.read()
                                     )
                 db.session.add(pic)
-    
+
 
 item_parser = reqparse.RequestParser()
 item_parser.add_argument('price', type=float, store_missing=False)
@@ -35,12 +37,12 @@ item_parser.add_argument('description', store_missing=False)
 item_parser.add_argument('is_available', type=bool, store_missing=False)
 item_parser.add_argument('category_id', type=int, store_missing=False)
 
+
 class ItemResource(Resource):
  
     def get(self, id):
         item = Item.query.get_or_404(id)
         return item.to_dict()
-    
     
     @auth.login_required(role=['admin'])
     def delete(self, id):
@@ -50,7 +52,6 @@ class ItemResource(Resource):
         db.session.delete(item)
         db.session.commit()
         return None, 204  # 204 - NO CONTENT
-    
     
     @auth.login_required(role=['moderator','admin'])
     def put(self, id):
@@ -99,7 +100,6 @@ class AllItemsResource(Resource):
         
         return item.to_dict(), 201  # 201 - CREATED
     
-    
     def get(self):
         # pagination
         page = request.args.get('page', 1, type=int)
@@ -109,14 +109,13 @@ class AllItemsResource(Resource):
 
 
 class PictureResource(Resource):
-
+    
     def get(self, id):
         pic = ItemPicture.query.get_or_404(id)
         return send_file(io.BytesIO(pic.file),
                         attachment_filename=pic.filename
                         )
 
-    
     @auth.login_required(role=['admin'])
     def delete(self, id):
         pic = ItemPicture.query.get_or_404(id)
