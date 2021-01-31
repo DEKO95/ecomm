@@ -13,16 +13,16 @@ All the endpoints have a `/api` prefix
 
 # Resources
 
-## Table of Contents <a name="contents"></a>
+## Table of Contents <a name="/contents"></a>
 | Endpoint         | Method   | Auth
 | ---              | :------: | :--- |
-|[`/items/<int:id>`](item) | [GET](item-get) |
-|                          | [PUT](item-put) | moderator
-|                          | [DELETE](item-delete) | admin
-|[`/items`](items) | [GET](items-get) | 
-|                  |[POST](items-post)| admin
-|[`/picture/<int:id>`](picture)| [GET](picture-get) | 
-|                              |[POST](picture-post)| admin
+|[`/items/<int:id>`](#item-) | [GET](#get-itemsintid-) |
+|                            | [PUT](#put-itemsintid-) | moderator
+|                            | [DELETE](#delete-itemsintid-) | admin
+|[`/items`](#items-) | [GET](#get-itemspageintper_pageint-) | 
+|                    |[POST](#post-items-)| admin
+|[`/picture/<int:id>`](#picture-)| [GET](#get-pictureintid-) | 
+|                                | [DELETE](#delete-pictureintid-)| admin
 
 
 ---
@@ -45,7 +45,7 @@ All the endpoints have a `/api` prefix
   ```
 * or 404 if an item with this id does not exist
 
-[↑ to table of contents](contents)
+[↑ to table of contents](#table-of-contents-)
 
 ### PUT `/items/<int:id>` <a name="item-put"></a>
 * _Moderator or admin role required_ 
@@ -55,7 +55,7 @@ All the endpoints have a `/api` prefix
 * Returns 200 and json of modified item
 * or 404 if an item with this id does not exist
 
-[↑ to table of contents](contents)
+[↑ to table of contents](#table-of-contents-)
 
 ### DELETE `/items/<int:id>` <a name="item-delete"></a>
 * _Admin role required_
@@ -63,7 +63,7 @@ All the endpoints have a `/api` prefix
 * Returns 204 if successful
 * or 404 if an item with this id does not exist
 
-[↑ to table of contents](contents)
+[↑ to table of contents](#table-of-contents-)
 
 
 ---
@@ -90,14 +90,14 @@ All the endpoints have a `/api` prefix
       }
     }
   ```
-[↑ to table of contents](contents)
+[↑ to table of contents](#table-of-contents-)
 
 ### POST `/items` <a name="items-post"></a>
 * _Admin role required_ 
-* Creates a new item. The request must be the same as for [PUT `/items/<int:id>`](item-put)
+* Creates a new item. The request must be the same as for [PUT `/items/<int:id>`](#put-itemsintid-)
 * Returns 201 if successful
 
-[↑ to table of contents](contents)
+[↑ to table of contents](#table-of-contents-)
 
 
 ---
@@ -107,7 +107,7 @@ All the endpoints have a `/api` prefix
 * Returns 200 and corresponding image (in type of `image/*`)
 * or 404 if a picture with this id does not exist
 
-[↑ to table of contents](contents)
+[↑ to table of contents](#table-of-contents-)
 
 ### DELETE `/picture/<int:id>` <a name="picture-delete"></a>
 * _Admin role required_
@@ -115,4 +115,4 @@ All the endpoints have a `/api` prefix
 * Returns 204 if successful
 * or 404 if a picture with this id does not exist
 
-[↑ to table of contents](contents)
+[↑ to table of contents](#table-of-contents-)
