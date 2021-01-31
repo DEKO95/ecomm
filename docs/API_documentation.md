@@ -30,16 +30,16 @@ All the endpoints have a `/api` prefix
 
 ### GET `/items/<int:id>` <a name="item-get"></a>
 * Returns 200 and json of selected item
-  ```json
+  ```javascript
   {
-    "id": /*int*/,
-    "title": /*string*/,
-    "price": /*float*/,
-    "description": /*string*/,
-    "is_available": /*bool*/,
-    "category_id": /*int*/,
+    "id": <int>,
+    "title": <string>,
+    "price": <float>,
+    "description": <string>,
+    "is_available": <bool>,
+    "category_id": <int>,
     "pictures": [
-        /* links for the related pictures */
+        // links for the related pictures
     ]
   }
   ```
@@ -72,16 +72,16 @@ All the endpoints have a `/api` prefix
 ### GET `/items?page=<int>&per_page=<int>` <a name="items-get"></a>
 
 * Paginates the list of all items and returns 200 with an items page
-  ```json
+  ```javascript
   {
       "items": [
           /* items (see GET /items/<int:id>) */
       ],
       "_meta": {
-          "page": /*int*/,
-          "per_page": /*int*/,
-          "total_pages": /*int*/,
-          "total_items": /*int*/
+          "page": <int>,
+          "per_page": <int>,
+          "total_pages": <int>,
+          "total_items": <int>
       },
       "_links": {
           "self": /* link for this page */,
