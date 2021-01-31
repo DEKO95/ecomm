@@ -38,9 +38,7 @@ All the endpoints have a `/api` prefix
     "description": <string>,
     "is_available": <bool>,
     "category_id": <int>,
-    "pictures": [
-        // links for the related pictures
-    ]
+    "pictures": [ /* links for the related pictures */ ]
   }
   ```
 * or 404 if an item with this id does not exist
@@ -88,7 +86,7 @@ All the endpoints have a `/api` prefix
           "next": /* link for the next page (or null) */,
           "prev": /* link for the previous page (or null) */
       }
-    }
+  }
   ```
 [↑ to table of contents](#table-of-contents-)
 
