@@ -8,3 +8,5 @@ api = Api(bp)
 from server.api import endpoints, errors, auth
 
 api.add_resource(endpoints.ItemResource, '/items/<int:id>')
+api.add_resource(endpoints.AllItemsResource, '/items')
+api.add_resource(endpoints.PictureResource, '/picture/<int:id>')

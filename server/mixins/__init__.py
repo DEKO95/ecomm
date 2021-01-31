@@ -1,0 +1,1 @@
+from .paginated import PaginatedMixin

@@ -5,6 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask import url_for
 
 from server import db
+from server.mixins import PaginatedMixin
 
 
 class User(db.Model):
@@ -32,7 +33,7 @@ class Moderator(db.Model):
     is_admin = db.Column(db.Boolean, default=False)
 
 
-class Item(db.Model):
+class Item(PaginatedMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(128), unique=True)
     price = db.Column(db.Numeric(precision=4, asdecimal=False, decimal_return_scale=None))
@@ -50,8 +51,8 @@ class Item(db.Model):
             "description": self.description,
             "is_available": self.is_available,
             "category_id": self.category_id, # or send category title?
-            "pictures": [
-                url_for('api.picture_endpoint', id=pic.id) for pic in self.pictures.all()
+            "pictures": [  # TODO: Models shouldn't reference API. Refactoring needed
+                url_for('api.pictureresource', id=pic.id) for pic in self.pictures.all()
             ]
         }
 
