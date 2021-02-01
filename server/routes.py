@@ -5,4 +5,4 @@ from server import app
 
 @app.route('/')
 def index():
-    return """<h1> Under construction </h1>"""
+    return render_template('public/index.html')
