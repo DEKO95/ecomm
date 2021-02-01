@@ -5,4 +5,4 @@ from server import app
 
 @app.route('/')
 def index():
-    return render_template('public/index.html')
+    return send_from_directory('build','index.html')

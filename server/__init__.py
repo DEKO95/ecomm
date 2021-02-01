@@ -5,7 +5,10 @@ from flask_migrate import Migrate
 from flask_httpauth import HTTPBasicAuth
 
 # TODO: app factory pattern
-app = Flask(__name__, root_path=os.getcwd())
+app = Flask(__name__, root_path=os.getcwd(),
+            static_folder=os.path.join(os.getcwd(), "build"),
+            static_url_path=''
+            )
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

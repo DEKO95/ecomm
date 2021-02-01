@@ -1,3 +1,6 @@
+.eslintcache
+build/
+
 migrations/
 
 .deta/
@@ -134,3 +137,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+node_modules
